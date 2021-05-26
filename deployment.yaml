@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: springboot-app
+    backstage.io/kubernetes-id: springboot-app
+  name: springboot-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: springboot-app
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: springboot-app
+        backstage.io/kubernetes-id: springboot-app
+    spec:
+      containers:
+      - image: springboot-app:0.0.1-SNAPSHOT
+        imagePullPolicy: Never
+        name: springboot-app
+        resources: {}
+        ports:
+          - containerPort: 8080 
+        readinessProbe:
+          httpGet:
+            path: /actuator/health
+            port: 8080
+          periodSeconds: 5
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: springboot-app
+    backstage.io/kubernetes-id: springboot-app
+  name: springboot-app
+spec:
+  ports:
+  - name: 8080-8080
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: springboot-app
+  type: ClusterIP
+status:
+  loadBalancer: {}

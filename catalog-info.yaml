@@ -1,0 +1,13 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: "springboot-app"
+  description: "Test Spring Boot Application"
+  annotations:
+    github.com/project-slug: fp-mt-test-org/test-springboot1
+    backstage.io/techdocs-ref: url:https://github.com/fp-mt-test-org/test-springboot1
+    backstage.io/kubernetes-id: springboot-app
+spec:
+  type: service
+  lifecycle: experimental
+  owner: "alinamchin"

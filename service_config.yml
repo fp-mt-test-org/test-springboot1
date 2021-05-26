@@ -1,0 +1,7 @@
+flex:
+  version: 0.11.0
+  cmd:
+    build:
+      command: if [ -z $CI ]; then eval $(minikube docker-env); fi && ./mvnw spring-boot:build-image
+service:
+  name: springboot-app
